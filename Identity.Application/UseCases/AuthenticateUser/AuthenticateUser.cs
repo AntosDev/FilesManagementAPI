@@ -5,7 +5,7 @@ using Identity.Domain.User;
 using MediatR;
 using System.Security.Claims;
 
-namespace Identity.Application.UseCases
+namespace Identity.Application.UseCases.AuthenticateUser
 {
     internal class AuthenticateUser : IRequestHandler<AuthenticateUserCommand, AuthenticationResult>
     {
@@ -28,15 +28,19 @@ namespace Identity.Application.UseCases
             return Task.FromResult(new AuthenticationResult
             {
                 AccessToken = token,
-                Error = null,
+                Message = "Valid credentials",
             });
         }
 
         private bool ValidatePassword(IdentityUser user, string password)
         {
             var checkResult = passwordHasher.Check(user.Password, password);
+            if (!checkResult.Verified) throw new UnauthorizedAccessException();
 
-            return checkResult.Verified;
+            if (checkResult.NeedsUpgrade)
+            {
+                //Raise password hash update requested event asynchronously
+            }
         }
 
         public Claim[] BuildClaims(IdentityUser userData)

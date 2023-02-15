@@ -1,7 +1,7 @@
 ﻿using Identity.Domain;
 using MediatR;
 
-namespace Identity.Application.UseCases
+namespace Identity.Application.UseCases.AuthenticateUser
 {
     internal class AuthenticateUserCommand : IRequest<AuthenticationResult>
     {

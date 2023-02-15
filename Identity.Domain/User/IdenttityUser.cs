@@ -1,4 +1,6 @@
-﻿namespace Identity.Domain
+﻿using Identity.Domain.InvertedDependencies;
+
+namespace Identity.Domain
 {
     public class IdentityUser
     {

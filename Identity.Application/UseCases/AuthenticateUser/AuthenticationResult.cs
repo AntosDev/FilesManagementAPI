@@ -1,4 +1,4 @@
-﻿namespace Identity.Domain
+﻿namespace Identity.Application.AuthenticateUser
 {
     public class AuthenticationResult
     {
