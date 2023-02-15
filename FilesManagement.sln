@@ -3,25 +3,25 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FilesManagement", "FilesManagement\FilesManagement.csproj", "{ADB05198-AA4A-4B1E-8892-487CEB51E144}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FilesManagement", "FilesManagement\FilesManagement.csproj", "{ADB05198-AA4A-4B1E-8892-487CEB51E144}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{D8A4C467-727F-4B01-B2A6-3F6A6ADD7585}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Identity", "Identity", "{1AE47567-29E5-43A7-9ECB-E1E4909CAB79}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Identity.Domain", "Identity.Domain\Identity.Domain.csproj", "{8800A250-B329-4141-A0B3-A0078405C3A9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Identity.Domain", "Identity.Domain\Identity.Domain.csproj", "{8800A250-B329-4141-A0B3-A0078405C3A9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Identity.Application", "Identity.Application\Identity.Application.csproj", "{43ADB9C6-7E60-4245-892E-90A1F899EEB5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Identity.Application", "Identity.Application\Identity.Application.csproj", "{43ADB9C6-7E60-4245-892E-90A1F899EEB5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Identity.Infra", "Identity.Infra\Identity.Infra.csproj", "{CB0558B8-05FD-4F30-8D9D-5FD630404774}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Identity.Infra", "Identity.Infra\Identity.Infra.csproj", "{CB0558B8-05FD-4F30-8D9D-5FD630404774}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FilesManagement.Core", "FilesManagement.Core", "{B78D4748-974A-4D77-8252-B46146EAD301}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FilesManagement.Core.Domain", "FilesManagement.Core.Domain\FilesManagement.Core.Domain.csproj", "{317005E0-F36A-4A3B-AA29-E27C639C0B44}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FilesManagement.Core.Domain", "FilesManagement.Core.Domain\FilesManagement.Core.Domain.csproj", "{317005E0-F36A-4A3B-AA29-E27C639C0B44}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FilesManagement.Core.Infra", "FilesManagement.Core.Infra\FilesManagement.Core.Infra.csproj", "{3216006C-FD8C-45EC-AB36-D35798059A4C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FilesManagement.Core.Infra", "FilesManagement.Core.Infra\FilesManagement.Core.Infra.csproj", "{3216006C-FD8C-45EC-AB36-D35798059A4C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FilesManagement.Core,Application", "FilesManagement.Core,Application\FilesManagement.Core,Application.csproj", "{0E8FAD74-B379-4A08-A08F-E11875FB4811}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FilesManagement.Core.Application", "FilesManagement.Core,Application\FilesManagement.Core.Application.csproj", "{0E8FAD74-B379-4A08-A08F-E11875FB4811}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

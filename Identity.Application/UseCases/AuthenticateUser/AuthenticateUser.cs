@@ -32,7 +32,7 @@ namespace Identity.Application.UseCases.AuthenticateUser
             });
         }
 
-        private bool ValidatePassword(IdentityUser user, string password)
+        private void ValidatePassword(IdentityUser user, string password)
         {
             var checkResult = passwordHasher.Check(user.Password, password);
             if (!checkResult.Verified) throw new UnauthorizedAccessException();
