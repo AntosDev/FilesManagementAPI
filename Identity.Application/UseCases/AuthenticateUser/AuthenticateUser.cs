@@ -27,7 +27,7 @@ namespace Identity.Application.UseCases.AuthenticateUser
             var token = this.tokenGenerator.BuildToken("very secret", user, BuildClaims(user));
             return Task.FromResult(new AuthenticationResult
             {
-                AccessToken = token,
+                Token = token,
                 Message = "Valid credentials",
             });
         }
