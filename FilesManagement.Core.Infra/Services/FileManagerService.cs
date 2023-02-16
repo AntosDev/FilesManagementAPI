@@ -1,12 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using FilesManagement.Core.Application.InvertedDependencies;
+using Microsoft.AspNetCore.Http;
 
 namespace FilesManagement.Core.Infra.Services
 {
-    internal class FileManagerService
+    internal class FileManagerService : IFileSystemHelper
     {
+        public IFormFile GetFileByPath(string fullSourceFilePath)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SaveFileToPath(IFormFile file, string fullDestinationFilePath)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
