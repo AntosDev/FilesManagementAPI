@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MediatR;
+using Microsoft.AspNetCore.Http;
 
 namespace FilesManagement.Core.Application.UseCases
 {
-    internal class UploadFileCommand
+    internal class UploadFileCommand : IRequest
     {
+        public IFormFile file { get; set; }
+        public string Path { get; set; }
+        public string FileName { get; set; }
     }
 }

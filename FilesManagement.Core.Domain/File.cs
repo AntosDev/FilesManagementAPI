@@ -1,6 +1,6 @@
 ﻿namespace FilesManagement.Core.Domain
 {
-    public class File
+    public class FileDomain
     {
         public string Name { get; set; }
         public string FullName { get; set; }
