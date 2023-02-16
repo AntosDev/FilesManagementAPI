@@ -29,7 +29,7 @@ namespace Identity.Infra
                 return $"{Options.Iterations}|{salt}|{key}";
             }
         }
-        public (bool Verified, bool NeedsUpgrade) Check(string hash, string password)
+        public bool Check(string hash, string password)
         {
             var parts = hash?.Split('|', 3);
 
@@ -55,7 +55,7 @@ namespace Identity.Infra
 
                 var verified = keyToCheck.SequenceEqual(key);
 
-                return (verified, needsUpgrade);
+                return verified;
             }
         }
     }

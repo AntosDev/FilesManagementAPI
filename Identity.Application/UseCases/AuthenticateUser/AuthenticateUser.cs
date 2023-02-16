@@ -35,12 +35,9 @@ namespace Identity.Application.UseCases.AuthenticateUser
         private void ValidatePassword(IdentityUser user, string password)
         {
             var checkResult = passwordHasher.Check(user.Password, password);
-            if (!checkResult.Verified) throw new UnauthorizedAccessException();
+            if (!checkResult) throw new UnauthorizedAccessException();
 
-            if (checkResult.NeedsUpgrade)
-            {
-                //Raise password hash update requested event asynchronously
-            }
+      
         }
 
         public Claim[] BuildClaims(IdentityUser userData)
