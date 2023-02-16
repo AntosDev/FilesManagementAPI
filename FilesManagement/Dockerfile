@@ -7,7 +7,7 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["FilesManagement/FilesManagement.csproj", "FilesManagement/"]
+COPY ["FilesManagement.csproj", "FilesManagement/"]
 RUN dotnet restore "FilesManagement/FilesManagement.csproj"
 COPY . .
 WORKDIR "/src/filesmanagement"
