@@ -1,6 +1,6 @@
 ﻿namespace FilesManagement.Core.Domain
 {
-    public class Class1
+    public class File
     {
 
     }
