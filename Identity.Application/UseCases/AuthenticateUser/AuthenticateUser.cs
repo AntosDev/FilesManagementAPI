@@ -24,7 +24,7 @@ namespace Identity.Application.UseCases.AuthenticateUser
         {
             var user = this.userRepo.FindByUsername(request.UserName);
             this.ValidatePassword(user, request.Password);
-            var token = this.tokenGenerator.BuildToken("very secret", user, BuildClaims(user));
+            var token = this.tokenGenerator.BuildToken("SecureKey-18963D2E-EDB5-43D1-80FB-7188D12ECE00-D54D2828-458D-4F79-8669-9F1916A0269E", user, BuildClaims(user));
             return Task.FromResult(new AuthenticationResult
             {
                 Token = token,

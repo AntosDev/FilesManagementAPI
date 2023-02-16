@@ -8,22 +8,27 @@ using FilesManagement.Core.Infra.DataAccess;
 using FilesManagement.Core.Infra.Services;
 using FilesManagement.Infra.DataAccess.Context;
 using Identity.Application.InvertedDependencies;
+using Identity.Application.UseCases.AuthenticateUser;
 using Identity.Domain.InvertedDependencies;
 using Identity.Domain.User;
 using Identity.Infra;
 using Identity.Infra.DataAccess;
 using Identity.Infra.DataAccess.Context;
 using MediatR;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Serilog;
 using Serilog.Formatting.Compact;
+using System.Reflection;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
 
 var _configuration = new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json").Build();
-
+var x = _configuration.GetConnectionString("MSSQL");
 // Add services to the container.
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
 
@@ -34,6 +39,33 @@ builder.Services.AddSwaggerGen();
 
 
 builder.Services.AddMediatR(typeof(Program));
+builder.Services.AddMediatR(typeof(AuthenticateUserCommand).GetTypeInfo().Assembly);
+builder.Services.AddAuthentication();
+
+
+builder.Services.AddAuthentication(options =>
+    {
+        options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+        options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+        options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    })
+    .AddJwtBearer(jwt =>
+    {
+        var key = Encoding.ASCII.GetBytes(_configuration["Jwt:Key"]);
+
+        jwt.SaveToken = true;
+        jwt.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuerSigningKey = true, // this will validate the 3rd part of the jwt token using the secret that we added in the appsettings and verify we have generated the jwt token
+            IssuerSigningKey = new SymmetricSecurityKey(key), // Add the secret key to our Jwt encryption
+            ValidateIssuer = false,
+            ValidateAudience = false,
+            RequireExpirationTime = false,
+            ValidateLifetime = true
+        };
+    });
+
+
 
 builder.Host.ConfigureContainer<ContainerBuilder>(builder =>
 {
