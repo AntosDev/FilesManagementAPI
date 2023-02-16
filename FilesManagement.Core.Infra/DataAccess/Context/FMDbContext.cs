@@ -1,13 +1,11 @@
 ﻿using FilesManagement.Core.Infra.DataAccess.Entities;
-using Identity.Infra.DataAccess.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
-namespace FilesManagement.Common.Infra.DataAccess
+namespace FilesManagement.Infra.DataAccess.Context
 {
     internal class FMDbContext: DbContext
     {
-        public DbSet<UserEntity> Users { get; set; }
         public DbSet<FileEntity> Files { get; set; }
 
         protected readonly IConfiguration Configuration;

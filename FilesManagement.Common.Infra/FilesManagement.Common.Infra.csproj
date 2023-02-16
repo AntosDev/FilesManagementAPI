@@ -22,8 +22,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FilesManagement.Common.Application\FilesManagement.Common.Application.csproj" />
-    <ProjectReference Include="..\FilesManagement.Core.Infra\FilesManagement.Core.Infra.csproj" />
-    <ProjectReference Include="..\Identity.Infra\Identity.Infra.csproj" />
   </ItemGroup>
 
 </Project>
