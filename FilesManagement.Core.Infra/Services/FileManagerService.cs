@@ -1,4 +1,5 @@
 ﻿using FilesManagement.Core.Application.InvertedDependencies;
+using FilesManagement.Core.Domain;
 using Microsoft.AspNetCore.Http;
 using System.Net.Http.Headers;
 
@@ -16,18 +17,21 @@ namespace FilesManagement.Core.Infra.Services
             throw new NotImplementedException();
         }
 
-        public void SaveFileToPath(IFormFile file, string fullDestinationFilePath)
+        public (string fileName, string extension, long size) GetInfoFromFile(IFormFile file)
         {
-            var fileContent = ContentDispositionHeaderValue.Parse(file.ContentDisposition);           
+            var fileContent = ContentDispositionHeaderValue.Parse(file.ContentDisposition);
 
             var fileName = Path.GetFileName(fileContent.FileName.ToString().Trim('"'));
             var comingExtension = file.FileName.Split('.')[file.FileName.Split('.').Length - 1].ToLower();
-            Directory.CreateDirectory(fullDestinationFilePath);
 
-            var rootPath = "~/comingExtension"; //string.IsNullOrEmpty(_storageSettings.FileStorageLocation) ? "~" : _storageSettings.FileStorageLocation;
-            var physicalPath = Path.Combine(rootPath, fullDestinationFilePath, file.FileName);
 
-            using (var fileStream = new FileStream(fullDestinationFilePath, FileMode.OpenOrCreate))
+            return (fileName, comingExtension, file.Length);
+        }
+
+        public void SaveFileToPath(IFormFile file, FileDomain fileinfo)
+        {
+            Directory.CreateDirectory(fileinfo.Path);
+            using (var fileStream = new FileStream(Path.Combine(fileinfo.Path, fileinfo.Name), FileMode.OpenOrCreate))
             {
                 file.CopyTo(fileStream);
             }

@@ -3,6 +3,7 @@ using Autofac.Extensions.DependencyInjection;
 using FilesManagement.Common.Application.InvertedDependencies;
 using FilesManagement.Common.Infra.DataAccess;
 using FilesManagement.Core.Application.InvertedDependencies;
+using FilesManagement.Core.Application.UseCases;
 using FilesManagement.Core.Domain.InvertedDependencies;
 using FilesManagement.Core.Infra.DataAccess;
 using FilesManagement.Core.Infra.Services;
@@ -28,7 +29,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 var _configuration = new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json").Build();
-var x = _configuration.GetConnectionString("DocckerMSSQL");
+var x = _configuration.GetConnectionString("DockerMSSQL");
 // Add services to the container.
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
 
@@ -40,6 +41,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddMediatR(typeof(Program));
 builder.Services.AddMediatR(typeof(AuthenticateUserCommand).GetTypeInfo().Assembly);
+builder.Services.AddMediatR(typeof(UploadFileCommand).GetTypeInfo().Assembly);
 builder.Services.AddAuthentication();
 
 
@@ -84,14 +86,14 @@ builder.Host.ConfigureContainer<ContainerBuilder>(builder =>
 
     builder.RegisterType<SqlConnectionFactory>()
           .As<ISqlConnectionFactory>()
-          .WithParameter("connectionString", _configuration.GetConnectionString("DocckerMSSQL"))
+          .WithParameter("connectionString", _configuration.GetConnectionString("DockerMSSQL"))
           .InstancePerLifetimeScope();
 
     builder
           .Register(c =>
           {
               var dbContextOptionsBuilder = new DbContextOptionsBuilder<FMDbContext>();
-              dbContextOptionsBuilder.UseSqlServer(_configuration.GetConnectionString("DocckerMSSQL"));
+              dbContextOptionsBuilder.UseSqlServer(_configuration.GetConnectionString("DockerMSSQL"));
 
 
 
@@ -104,7 +106,7 @@ builder.Host.ConfigureContainer<ContainerBuilder>(builder =>
       .Register(c =>
       {
           var dbContextOptionsBuilder = new DbContextOptionsBuilder<IdentityDBContext>();
-          dbContextOptionsBuilder.UseSqlServer(_configuration.GetConnectionString("MSSQL"));
+          dbContextOptionsBuilder.UseSqlServer(_configuration.GetConnectionString("DockerMSSQL"));
 
 
 

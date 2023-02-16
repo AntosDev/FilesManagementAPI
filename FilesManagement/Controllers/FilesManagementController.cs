@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using FilesManagement.Core.Application.UseCases;
+using MediatR;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -9,6 +11,12 @@ namespace FilesManagement.Controllers
     [ApiController]
     public class FilesManagementController : ControllerBase
     {
+        private readonly IMediator _mediator;
+
+        public FilesManagementController(IMediator mediator)
+        {
+            this._mediator = mediator ?? throw new ArgumentNullException();
+        }
         //[HttpGet(Name = "GetWeatherForecast")]
         //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         //public IEnumerable<WeatherForecast> Get()
@@ -21,5 +29,15 @@ namespace FilesManagement.Controllers
         //    })
         //    .ToArray();
         //}
+        [HttpPost(Name = "UploadFile")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public async Task<IActionResult> UploadFileAsync(IFormFile file)
+        {
+            await _mediator.Send(new UploadFileCommand
+            {
+                File = file
+            });
+            return Ok();
+        }
     }
 }

@@ -18,14 +18,25 @@ namespace FilesManagement.Core.Application.UseCases
 
         public Task<Unit> Handle(UploadFileCommand request, CancellationToken cancellationToken)
         {
-            filesSystemHelper.SaveFileToPath(request.file, request.Path);
+            var fileInfo = filesSystemHelper.GetInfoFromFile(request.File);
+
+            var rootPath = "D:";// string.IsNullOrEmpty(_storageSettings.FileStorageLocation) ? "~" : _storageSettings.FileStorageLocation;
+            var physicalPath = Path.Combine(rootPath, fileInfo.extension);
+
             var file = new FileDomain
-            { 
-                Name = request.FileName, 
-                CreatedDate = DateTime.UtcNow 
+            {
+                Name = fileInfo.fileName,
+                Path = physicalPath,
+                FileId = Guid.NewGuid().ToString(),
+                Size = fileInfo.size,
+                CreatedDate = DateTime.UtcNow
             };
 
+            filesSystemHelper.SaveFileToPath(request.File, file);
+
+
             filesRepo.Save(new List<FileDomain> { file });
+
             return Unit.Task;
         }
     }

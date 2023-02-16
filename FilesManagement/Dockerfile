@@ -10,7 +10,7 @@ WORKDIR /src
 COPY ["FilesManagement/FilesManagement.csproj", "FilesManagement/"]
 RUN dotnet restore "FilesManagement/FilesManagement.csproj"
 COPY . .
-WORKDIR "/src/FilesManagement"
+WORKDIR "/src/filesmanagement"
 RUN dotnet build "FilesManagement.csproj" -c Release -o /app/build
 
 FROM build AS publish
