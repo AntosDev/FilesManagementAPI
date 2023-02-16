@@ -68,21 +68,21 @@ The source code contains:
     seperate projects:
     <ul>
       <li>
-        <b>Domain:</b>Contains the aggregate roots, domain entities and enforces
+        <b>Domain:</b> Contains the aggregate roots, domain entities and enforces
         the repositories' interfaces (IoC) although being persistance ignorant
         (due to the project's size not much was added to this project)
       </li>
       <li>
-        <b>Application</b>The orchstrator containing the various use cases that
+        <b>Application:</b> The orchstrator containing the various use cases that
         the module provides, it enforces its own interfaces (IoC) and is only
         dependant on the Domain Project (hexagonal)
       </li>
       <li>
-        <b>Infra</b>Where the none business specific implementations are, it
+        <b>Infra:</b> Where the not business-specific implementations are, it
         contains the data access logic (from ORMs to db contextss, migrations
         and repositories implementations) and various helpers/tools
       </li>
-      <li><b>Tests</b> A XUnit project to create automated tests</li>
+      <li><b>Tests:</b> A XUnit project to create automated tests</li>
     </ul>
   </li>
   <li>
