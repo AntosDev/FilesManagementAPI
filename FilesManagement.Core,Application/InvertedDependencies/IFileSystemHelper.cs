@@ -7,7 +7,8 @@ namespace FilesManagement.Core.Application.InvertedDependencies
     {
         (string fileName, string extension, long size) GetInfoFromFile(IFormFile file);
         void SaveFileToPath(IFormFile file, FileDomain fileinfo);
-        IFormFile GetFileByPath(string fullSourceFilePath);
-        void DeleteFileFomPath(string fullDestinationFilePath);
+        Stream getFileStream(string fullFilePath);
+
+        void DeleteFiles(string fullFilePath);
     }
 }

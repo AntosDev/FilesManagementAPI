@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Http;
 
 namespace FilesManagement.Core.Application.UseCases
 {
-    internal class GetFileQuery : IRequest<GetFileResponse>
+    public class GetFileQuery : IRequest<GetFileResponse>
     {
         public string FileId { get; set; }
 
@@ -13,18 +13,18 @@ namespace FilesManagement.Core.Application.UseCases
             get
             {
                 return "SELECT" +
-               $"[file].[file_ID] AS [{nameof(FileDomain.FileId)}], " +
-               $"[file].[file_Path] AS [{nameof(FileDomain.Path)}], " +
-               $"[file].[file_Name] AS [{nameof(FileDomain.Name)}], " +
-               $"[file].[file_CreatedDate] AS [{nameof(FileDomain.CreatedDate)}] " +
-               $"FROM [dbo].[file]" +
-               "WHERE [file].[file_ID] = '{0}'";
+               $"[fm_File].[file_ID] AS [{nameof(FileDomain.FileId)}], " +
+               $"[fm_File].[file_Path] AS [{nameof(FileDomain.Path)}], " +
+               $"[fm_File].[file_Name] AS [{nameof(FileDomain.Name)}], " +
+               $"[fm_File].[file_CreatedDate] AS [{nameof(FileDomain.CreatedDate)}] " +
+               $"FROM [dbo].[fm_File]" +
+               "WHERE [fm_File].[file_ID] = '{0}'";
             }
         }
     }
     public class GetFileResponse
     {
         public FileDomain Details { get; set; }
-        public IFormFile File { get; set; }
+        public Stream FileStream { get; set; }
     }
 }

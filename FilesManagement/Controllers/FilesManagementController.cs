@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FilesManagement.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     [ApiController]
     public class FilesManagementController : ControllerBase
     {
@@ -17,19 +17,14 @@ namespace FilesManagement.Controllers
         {
             this._mediator = mediator ?? throw new ArgumentNullException();
         }
-        //[HttpGet(Name = "GetWeatherForecast")]
-        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-        //public IEnumerable<WeatherForecast> Get()
-        //{
-        //    return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-        //    {
-        //        Date = DateTime.Now.AddDays(index),
-        //        TemperatureC = Random.Shared.Next(-20, 55),
-        //        Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-        //    })
-        //    .ToArray();
-        //}
-        [HttpPost(Name = "UploadFile")]
+        [HttpGet("{id}")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public async Task<IActionResult> DownloadFile(string id)
+        {
+            var response = await _mediator.Send(new GetFileQuery { FileId = id });
+            return Ok(response.FileStream);
+        }
+        [HttpPost]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<IActionResult> UploadFileAsync(IFormFile file)
         {

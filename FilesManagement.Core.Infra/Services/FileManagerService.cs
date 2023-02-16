@@ -7,15 +7,6 @@ namespace FilesManagement.Core.Infra.Services
 {
     public class FileManagerService : IFileSystemHelper
     {
-        public void DeleteFileFomPath(string fullDestinationFilePath)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IFormFile GetFileByPath(string fullSourceFilePath)
-        {
-            throw new NotImplementedException();
-        }
 
         public (string fileName, string extension, long size) GetInfoFromFile(IFormFile file)
         {
@@ -35,6 +26,19 @@ namespace FilesManagement.Core.Infra.Services
             {
                 file.CopyTo(fileStream);
             }
+        }
+        public Stream getFileStream(string fullFilePath)
+        {
+            return new FileStream(fullFilePath, FileMode.Open);
+        }
+
+        public void DeleteFiles(string fullFilePath)
+        {
+            try
+            {
+                File.Delete(fullFilePath);
+            }
+            catch (Exception) { }
         }
     }
 }

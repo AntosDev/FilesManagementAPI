@@ -23,10 +23,10 @@ namespace FilesManagement.Core.Application.UseCases
         {
             var connection = _sqlConnectionFactory.GetOpenConnection();
             var fileDetails = await _sqlConnectionFactory.QuerySingle<FileDomain>(connection, string.Format(request.SQL, request.FileId));
-            var file = filesSystemHelper.GetFileByPath(Path.Combine(fileDetails.Path, fileDetails.Name));
+            var file = filesSystemHelper.getFileStream(Path.Combine(fileDetails.Path, fileDetails.Name));
             return new GetFileResponse
             {
-                File = file,
+                FileStream = file,
                 Details = fileDetails
             };
         }
