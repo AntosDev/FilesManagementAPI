@@ -17,6 +17,7 @@ namespace Identity.Infra.DataAccess
         public IdentityUser FindByUsername(string username)
         {
             var dbEntities = this.dbContext.Users.Where(u => u.Username == username);
+            if (dbEntities == null || dbEntities.Count() == 0) throw new InvalidOperationException("Resource not found");
             return dbEntities.Select(u => ToAggregate(u)).First();
         }
 

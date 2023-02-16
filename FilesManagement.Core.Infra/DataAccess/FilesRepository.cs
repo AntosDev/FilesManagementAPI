@@ -16,19 +16,36 @@ namespace FilesManagement.Core.Infra.DataAccess
 
         public void Save(IEnumerable<Domain.FileDomain> files)
         {
-            var fileEntities = files.Select(f => ToPersistance(f));
-            this.dbContext.Files.AddRange(fileEntities);
-            this.dbContext.SaveChanges();
+            if (files == null) throw new ArgumentNullException(nameof(files));
+            try
+            {
+                var fileEntities = files.Select(f => ToPersistance(f));
+                this.dbContext.Files.AddRange(fileEntities);
+                this.dbContext.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                throw new Exception(ex.ToString());
+            }
         }
+
         public FileDomain Find(string id)
         {
             var dbEntities = this.dbContext.Files.Where(f => f.FileId == id);
+
+            if (dbEntities == null || dbEntities.Count() == 0) throw new InvalidDataException("Resource not found");
+
             return dbEntities.Select(u => ToAggregate(u)).First();
         }
 
         public void Delete(IEnumerable<string> ids)
         {
-            var entities =  this.dbContext.Files.Where(f => ids.Contains(f.FileId));            
+            var entities = this.dbContext.Files.Where(f => ids.Contains(f.FileId));
+
+            if (entities == null || entities.Count() == 0) return;
+
+
             this.dbContext.Files.RemoveRange(entities);
             this.dbContext.SaveChanges();
         }
@@ -57,4 +74,5 @@ namespace FilesManagement.Core.Infra.DataAccess
             };
         }
     }
+    
 }

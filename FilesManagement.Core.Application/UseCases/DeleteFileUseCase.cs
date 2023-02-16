@@ -22,9 +22,12 @@ namespace FilesManagement.Core.Application.UseCases
         public Task<Unit> Handle(DeleteFileCommand request, CancellationToken cancellationToken)
         {
             var file = filesRepo.Find(request.FileID);
-            filesSystemHelper.DeleteFiles(Path.Combine(file.Path, file.Name));           
+            if (file != null)            {
 
-            filesRepo.Delete(new List<string> { file.FileId });
+                filesSystemHelper.DeleteFiles(Path.Combine(file.Path, file.Name));
+
+                filesRepo.Delete(new List<string> { file.FileId });
+            }
             return Unit.Task;
         }
     }

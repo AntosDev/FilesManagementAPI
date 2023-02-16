@@ -10,19 +10,19 @@ namespace FilesManagement.Core.Application.UseCases
     {
         IFileSystemHelper filesSystemHelper;
         IFilesRepository filesRepo;
-        ISqlConnectionFactory _sqlConnectionFactory;
-
-        public GetFileUseCase(IFileSystemHelper filesSystemHelper, IFilesRepository filesRepo, ISqlConnectionFactory _sqlConnectionFactory)
+        
+        public GetFileUseCase(IFileSystemHelper filesSystemHelper, IFilesRepository filesRepo)
         {
             this.filesSystemHelper = filesSystemHelper;
             this.filesRepo = filesRepo;
-            this._sqlConnectionFactory = _sqlConnectionFactory;
         }
 
         public async Task<GetFileResponse> Handle(GetFileQuery request, CancellationToken cancellationToken)
         {
-            var connection = _sqlConnectionFactory.GetOpenConnection();
-            var fileDetails = await _sqlConnectionFactory.QuerySingle<FileDomain>(connection, string.Format(request.SQL, request.FileId));
+            var fileDetails = this.filesRepo.Find(request.FileId);
+
+            if (fileDetails == null) throw new InvalidDataException("File With Specified ID Not found");
+
             var file = filesSystemHelper.getFileStream(Path.Combine(fileDetails.Path, fileDetails.Name));
             return new GetFileResponse
             {

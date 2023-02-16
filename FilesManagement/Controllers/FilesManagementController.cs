@@ -22,14 +22,27 @@ namespace FilesManagement.Controllers
         public async Task<IActionResult> GetFiles()
         {
             var response = await _mediator.Send(new GetFilesQuery());
+            if(response == null || response.Count() == 0) return NoContent();
             return Ok(response);
         }
         [HttpGet("{id}")]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<IActionResult> DownloadFile(string id)
         {
-            var response = await _mediator.Send(new GetFileQuery { FileId = id });
-            return Ok(response.FileStream);
+            try
+            {
+                var response = await _mediator.Send(new GetFileQuery { FileId = id });
+                return Ok(response.FileStream);
+            }
+            catch (InvalidDataException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+
+                return Problem(ex.Message);
+            }
         }
         [HttpPost]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
@@ -46,7 +59,7 @@ namespace FilesManagement.Controllers
         public async Task<IActionResult> DeleteFile(string id)
         {
             var response = await _mediator.Send(new DeleteFileCommand { FileID = id });
-            return Ok();
+            return NoContent();
         }
     }
 }

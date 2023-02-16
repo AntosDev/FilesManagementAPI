@@ -36,7 +36,10 @@ namespace FilesManagement.Controllers
                 Password = loginDTO.Password,
                 UserName = loginDTO.Username
             });
-            return Ok(new AuthResultDTO { Message = authenticationResult.Message, AccessToken = authenticationResult.Token });
+
+            return string.IsNullOrEmpty(authenticationResult.Token) ? 
+                Unauthorized(authenticationResult.Message) 
+                : Ok(new AuthResultDTO { Message = authenticationResult.Message, AccessToken = authenticationResult.Token });
 
         }
     }
