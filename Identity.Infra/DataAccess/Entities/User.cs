@@ -13,7 +13,8 @@ namespace Identity.Infra.DataAccess.Entities
         }
 
         [Column("id")]
-        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+
         public long ID { get; set; }
 
         [Column("usr_ID")]

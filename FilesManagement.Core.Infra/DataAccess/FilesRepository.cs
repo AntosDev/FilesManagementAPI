@@ -28,7 +28,7 @@ namespace FilesManagement.Core.Infra.DataAccess
 
         public void Delete(IEnumerable<string> ids)
         {
-            var entities = ids.Select(id => new FileEntity { FileId = id });
+            var entities =  this.dbContext.Files.Where(f => ids.Contains(f.FileId));            
             this.dbContext.Files.RemoveRange(entities);
             this.dbContext.SaveChanges();
         }

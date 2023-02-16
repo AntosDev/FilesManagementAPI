@@ -17,6 +17,13 @@ namespace FilesManagement.Controllers
         {
             this._mediator = mediator ?? throw new ArgumentNullException();
         }
+        [HttpGet]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public async Task<IActionResult> GetFiles()
+        {
+            var response = await _mediator.Send(new GetFilesQuery());
+            return Ok(response);
+        }
         [HttpGet("{id}")]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<IActionResult> DownloadFile(string id)
@@ -32,6 +39,13 @@ namespace FilesManagement.Controllers
             {
                 File = file
             });
+            return Ok();
+        }
+        [HttpDelete("{id}")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public async Task<IActionResult> DeleteFile(string id)
+        {
+            var response = await _mediator.Send(new DeleteFileCommand { FileID = id });
             return Ok();
         }
     }

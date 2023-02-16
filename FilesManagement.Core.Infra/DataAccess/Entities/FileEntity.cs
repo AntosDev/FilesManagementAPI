@@ -11,7 +11,7 @@ namespace FilesManagement.Core.Infra.DataAccess.Entities
             // For entity framework
         }
         [Column("id")]
-        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long ID { get; set; }
 
         [Column("file_ID")]
