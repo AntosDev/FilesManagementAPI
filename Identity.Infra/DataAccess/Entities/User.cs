@@ -1,6 +1,6 @@
 ﻿namespace Identity.Infra.DataAccess.Entities
 {
-    internal class User
+    public class UserEntity
     {
     }
 }

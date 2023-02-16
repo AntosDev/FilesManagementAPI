@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FilesManagement.Core.Infra.DataAccess.Entities
 {
-    internal class FileEntity
+    public class FileEntity
     {
     }
 }

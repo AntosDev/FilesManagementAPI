@@ -1,4 +1,6 @@
-﻿using FilesManagement.Core.Application.InvertedDependencies;
+﻿using FilesManagement.Common.Application.InvertedDependencies;
+using FilesManagement.Core.Application.InvertedDependencies;
+using FilesManagement.Core.Domain;
 using FilesManagement.Core.Domain.InvertedDependencies;
 using MediatR;
 
@@ -8,22 +10,25 @@ namespace FilesManagement.Core.Application.UseCases
     {
         IFileSystemHelper filesSystemHelper;
         IFilesRepository filesRepo;
+        ISqlConnectionFactory _sqlConnectionFactory;
 
-        public GetFileUseCase(IFileSystemHelper filesSystemHelper, IFilesRepository filesRepo)
+        public GetFileUseCase(IFileSystemHelper filesSystemHelper, IFilesRepository filesRepo, ISqlConnectionFactory _sqlConnectionFactory)
         {
             this.filesSystemHelper = filesSystemHelper;
             this.filesRepo = filesRepo;
+            this._sqlConnectionFactory = _sqlConnectionFactory;
         }
 
-        public Task<GetFileResponse> Handle(GetFileQuery request, CancellationToken cancellationToken)
+        public async Task<GetFileResponse> Handle(GetFileQuery request, CancellationToken cancellationToken)
         {
-            var fileDetails = filesRepo.Find(request.FileId);
+            var connection = _sqlConnectionFactory.GetOpenConnection();
+            var fileDetails = await _sqlConnectionFactory.QuerySingle<FileDomain>(connection, string.Format(request.SQL, request.FileId));
             var file = filesSystemHelper.GetFileByPath(Path.Combine(fileDetails.Path, fileDetails.Name));
-            return Task.FromResult(new GetFileResponse
+            return new GetFileResponse
             {
                 File = file,
                 Details = fileDetails
-            });
+            };
         }
     }
 }
