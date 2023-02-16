@@ -21,20 +21,20 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FilesManagement.Core.Domain
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FilesManagement.Core.Infra", "FilesManagement.Core.Infra\FilesManagement.Core.Infra.csproj", "{3216006C-FD8C-45EC-AB36-D35798059A4C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FilesManagement.Core.Application", "FilesManagement.Core,Application\FilesManagement.Core.Application.csproj", "{0E8FAD74-B379-4A08-A08F-E11875FB4811}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FilesManagement.Common.Infra", "FilesManagement.Common.Infra\FilesManagement.Common.Infra.csproj", "{615131A7-57CD-404B-9654-43B27CAFE7DD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FilesManagement.Common.Infra", "FilesManagement.Common.Infra\FilesManagement.Common.Infra.csproj", "{615131A7-57CD-404B-9654-43B27CAFE7DD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FilesManagement.Common.Application", "FilesManagement.Common.Application\FilesManagement.Common.Application.csproj", "{FDD4C255-19B3-4B89-9C46-0554CD914D89}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FilesManagement.Common.Application", "FilesManagement.Common.Application\FilesManagement.Common.Application.csproj", "{FDD4C255-19B3-4B89-9C46-0554CD914D89}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FilesManagement.Core.Tests", "FilesManagement.Core.Tests\FilesManagement.Core.Tests.csproj", "{AD9A2ED7-DD6B-441B-A90C-92640E7B6382}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FilesManagement.Core.Tests", "FilesManagement.Core.Tests\FilesManagement.Core.Tests.csproj", "{AD9A2ED7-DD6B-441B-A90C-92640E7B6382}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Identity.Tests", "Identity.Tests\Identity.Tests.csproj", "{2942C9C4-E4D5-4E83-AF9E-05F88EF350C4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Identity.Tests", "Identity.Tests\Identity.Tests.csproj", "{2942C9C4-E4D5-4E83-AF9E-05F88EF350C4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E6A0C113-5E3D-41AE-AB1B-6260BA93A8DA}"
 	ProjectSection(SolutionItems) = preProject
 		docker-compose.yaml = docker-compose.yaml
 	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FilesManagement.Core.Application", "FilesManagement.Core.Application\FilesManagement.Core.Application.csproj", "{2309576E-4B7C-49FD-A546-862653F9DE9A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -66,10 +66,6 @@ Global
 		{3216006C-FD8C-45EC-AB36-D35798059A4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3216006C-FD8C-45EC-AB36-D35798059A4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3216006C-FD8C-45EC-AB36-D35798059A4C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0E8FAD74-B379-4A08-A08F-E11875FB4811}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0E8FAD74-B379-4A08-A08F-E11875FB4811}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0E8FAD74-B379-4A08-A08F-E11875FB4811}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0E8FAD74-B379-4A08-A08F-E11875FB4811}.Release|Any CPU.Build.0 = Release|Any CPU
 		{615131A7-57CD-404B-9654-43B27CAFE7DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{615131A7-57CD-404B-9654-43B27CAFE7DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{615131A7-57CD-404B-9654-43B27CAFE7DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -86,6 +82,10 @@ Global
 		{2942C9C4-E4D5-4E83-AF9E-05F88EF350C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2942C9C4-E4D5-4E83-AF9E-05F88EF350C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2942C9C4-E4D5-4E83-AF9E-05F88EF350C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2309576E-4B7C-49FD-A546-862653F9DE9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2309576E-4B7C-49FD-A546-862653F9DE9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2309576E-4B7C-49FD-A546-862653F9DE9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2309576E-4B7C-49FD-A546-862653F9DE9A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -98,9 +98,9 @@ Global
 		{B78D4748-974A-4D77-8252-B46146EAD301} = {D8A4C467-727F-4B01-B2A6-3F6A6ADD7585}
 		{317005E0-F36A-4A3B-AA29-E27C639C0B44} = {B78D4748-974A-4D77-8252-B46146EAD301}
 		{3216006C-FD8C-45EC-AB36-D35798059A4C} = {B78D4748-974A-4D77-8252-B46146EAD301}
-		{0E8FAD74-B379-4A08-A08F-E11875FB4811} = {B78D4748-974A-4D77-8252-B46146EAD301}
 		{AD9A2ED7-DD6B-441B-A90C-92640E7B6382} = {B78D4748-974A-4D77-8252-B46146EAD301}
 		{2942C9C4-E4D5-4E83-AF9E-05F88EF350C4} = {1AE47567-29E5-43A7-9ECB-E1E4909CAB79}
+		{2309576E-4B7C-49FD-A546-862653F9DE9A} = {B78D4748-974A-4D77-8252-B46146EAD301}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9BF9474B-3E96-4BD8-9AE4-6CB4DCAB649E}
