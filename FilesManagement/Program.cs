@@ -28,7 +28,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 var _configuration = new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json").Build();
-var x = _configuration.GetConnectionString("MSSQL");
+var x = _configuration.GetConnectionString("DocckerMSSQL");
 // Add services to the container.
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
 
@@ -84,14 +84,14 @@ builder.Host.ConfigureContainer<ContainerBuilder>(builder =>
 
     builder.RegisterType<SqlConnectionFactory>()
           .As<ISqlConnectionFactory>()
-          .WithParameter("connectionString", _configuration.GetConnectionString("MSSQL"))
+          .WithParameter("connectionString", _configuration.GetConnectionString("DocckerMSSQL"))
           .InstancePerLifetimeScope();
 
     builder
           .Register(c =>
           {
               var dbContextOptionsBuilder = new DbContextOptionsBuilder<FMDbContext>();
-              dbContextOptionsBuilder.UseSqlServer(_configuration.GetConnectionString("MSSQL"));
+              dbContextOptionsBuilder.UseSqlServer(_configuration.GetConnectionString("DocckerMSSQL"));
 
 
 
