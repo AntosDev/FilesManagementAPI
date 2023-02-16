@@ -1,13 +1,36 @@
 ﻿using Identity.Domain;
 using Identity.Domain.User;
+using Identity.Infra.DataAccess.Context;
+using Identity.Infra.DataAccess.Entities;
+using System.Linq;
 
 namespace Identity.Infra.DataAccess
 {
-    internal class UserRepository : IUserRepository
+    public class UserRepository : IUserRepository
     {
+        private readonly IdentityDBContext dbContext;
+
+        public UserRepository(IdentityDBContext dbContext)
+        {
+            this.dbContext = dbContext;
+        }
         public IdentityUser FindByUsername(string username)
         {
-            throw new NotImplementedException();
+            var dbEntities = this.dbContext.Users.Where(u => u.Username == username);
+            return dbEntities.Select(u => ToAggregate(u)).First();
+        }
+
+        private static IdentityUser ToAggregate(UserEntity dbEntity)
+        {
+            if (dbEntity == null) throw new Exception("Mapping for null failed");
+            return new IdentityUser
+            {
+                Username = dbEntity.Username,
+                Password = dbEntity.Password,
+                FirstName = dbEntity.FirstName,
+                LastName = dbEntity.LastName,
+                EntityID = dbEntity.UserId
+            };
         }
     }
 }

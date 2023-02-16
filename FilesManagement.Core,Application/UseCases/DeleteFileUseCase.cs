@@ -24,7 +24,7 @@ namespace FilesManagement.Core.Application.UseCases
             var file = filesRepo.Find(request.FileID);
             filesSystemHelper.DeleteFileFomPath(Path.Combine(file.Path, file.Name));           
 
-            filesRepo.Delete(new List<string> { file.Id });
+            filesRepo.Delete(new List<string> { file.FileId });
             return Unit.Task;
         }
     }

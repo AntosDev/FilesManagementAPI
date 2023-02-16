@@ -9,14 +9,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="8.0.0" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.14.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
     <PackageReference Include="System.Collections" Version="4.3.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\FilesManagement.Common.Infra\FilesManagement.Common.Infra.csproj" />
     <ProjectReference Include="..\FilesManagement.Core,Application\FilesManagement.Core.Application.csproj" />
+    <ProjectReference Include="..\FilesManagement.Core.Infra\FilesManagement.Core.Infra.csproj" />
     <ProjectReference Include="..\Identity.Application\Identity.Application.csproj" />
+    <ProjectReference Include="..\Identity.Infra\Identity.Infra.csproj" />
   </ItemGroup>
 
 </Project>

@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Identity.Infra
 {
-    internal class TokenGenerator : ITokenGenerator
+    public class TokenGenerator : ITokenGenerator
     {
         public string BuildToken(string secret, IdentityUser userData,  Claim[] claims)
         {

@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace Identity.Infra.DataAccess.Context
 {
-    internal class IdentityDBContext : DbContext
+    public class IdentityDBContext : DbContext
     {
         public DbSet<UserEntity> Users { get; set; }
 

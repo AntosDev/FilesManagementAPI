@@ -13,7 +13,7 @@ namespace FilesManagement.Core.Application.UseCases
             get
             {
                 return "SELECT" +
-               $"[file].[file_ID] AS [{nameof(FileDomain.Id)}], " +
+               $"[file].[file_ID] AS [{nameof(FileDomain.FileId)}], " +
                $"[file].[file_Path] AS [{nameof(FileDomain.Path)}], " +
                $"[file].[file_Name] AS [{nameof(FileDomain.Name)}], " +
                $"[file].[file_CreatedDate] AS [{nameof(FileDomain.CreatedDate)}] " +

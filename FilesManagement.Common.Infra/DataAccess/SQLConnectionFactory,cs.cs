@@ -3,8 +3,9 @@ using System.Data;
 using Microsoft.Data.SqlClient;
 using System.Data.Common;
 using Dapper;
+using FilesManagement.Common.Application.InvertedDependencies;
 
-namespace FilesManagement.Common.Application.InvertedDependencies
+namespace FilesManagement.Common.Infra.DataAccess
 {
     public class SqlConnectionFactory : IDisposable, ISqlConnectionFactory
     {

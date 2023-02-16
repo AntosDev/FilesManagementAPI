@@ -4,7 +4,7 @@ using System.Net.Http.Headers;
 
 namespace FilesManagement.Core.Infra.Services
 {
-    internal class FileManagerService : IFileSystemHelper
+    public class FileManagerService : IFileSystemHelper
     {
         public void DeleteFileFomPath(string fullDestinationFilePath)
         {

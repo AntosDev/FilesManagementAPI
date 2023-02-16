@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace FilesManagement.Infra.DataAccess.Context
 {
-    internal class FMDbContext: DbContext
+    public class FMDbContext: DbContext
     {
         public DbSet<FileEntity> Files { get; set; }
 
