@@ -3,7 +3,7 @@
 <h2>To Run:</h2>
 <h4>
   <pre>docker compose up</pre>
-  to set up the DP (MSSQL)
+  to set up the data base (MSSQL)
 </h4>
 <h4>Enjoy!</h4>
 
