@@ -6,6 +6,11 @@ namespace FilesManagement.Core.Infra.Services
 {
     internal class FileManagerService : IFileSystemHelper
     {
+        public void DeleteFileFomPath(string fullDestinationFilePath)
+        {
+            throw new NotImplementedException();
+        }
+
         public IFormFile GetFileByPath(string fullSourceFilePath)
         {
             throw new NotImplementedException();

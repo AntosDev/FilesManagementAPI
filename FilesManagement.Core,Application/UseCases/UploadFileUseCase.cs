@@ -9,7 +9,14 @@ namespace FilesManagement.Core.Application.UseCases
     {
         IFileSystemHelper filesSystemHelper;
         IFilesRepository filesRepo;
-        public async Task Handle(UploadFileCommand request, CancellationToken cancellationToken)
+
+        public UploadFileUseCase(IFileSystemHelper filesSystemHelper, IFilesRepository filesRepo)
+        {
+            this.filesSystemHelper = filesSystemHelper;
+            this.filesRepo = filesRepo;
+        }
+
+        public Task<Unit> Handle(UploadFileCommand request, CancellationToken cancellationToken)
         {
             filesSystemHelper.SaveFileToPath(request.file, request.Path);
             var file = new FileDomain
@@ -19,6 +26,7 @@ namespace FilesManagement.Core.Application.UseCases
             };
 
             filesRepo.Save(new List<FileDomain> { file });
+            return Unit.Task;
         }
     }
 }

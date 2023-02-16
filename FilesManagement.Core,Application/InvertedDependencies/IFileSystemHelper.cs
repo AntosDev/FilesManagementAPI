@@ -6,5 +6,6 @@ namespace FilesManagement.Core.Application.InvertedDependencies
     {
         void SaveFileToPath(IFormFile file, string fullDestinationFilePath);
         IFormFile GetFileByPath(string fullSourceFilePath);
+        void DeleteFileFomPath(string fullDestinationFilePath);
     }
 }

@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MediatR;
 
 namespace FilesManagement.Core.Application.UseCases
 {
-    internal class DeleteFileCommand
+    internal class DeleteFileCommand : IRequest
     {
+        public string FileID { get; set; }
     }
 }
