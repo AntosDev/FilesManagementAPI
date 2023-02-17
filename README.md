@@ -27,7 +27,7 @@
   <li>Architecture Design: SOLID, DDD, Hexagonal</li>
   <li>CQRS (check GetUsersUseCase)</li>
   <li>Decoupling via MediatR</li>
-  <li>Authentication: JWT, generated through ('api/uthentication/login')</li>
+  <li>Authentication: JWT, generated through ('api/authentication/login')</li>
   <li>
     APIs
     <ul>
